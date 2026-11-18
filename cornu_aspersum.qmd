@@ -1,0 +1,30 @@
+---
+title: "Variação diâmetro concha Cornu aspersum com habitat, temperatura e exposição solar"
+author: "Manoela Frigeri 63479, Duarte Sousa 63477, Tomás Lavrado 63546"
+format: html
+editor: visual
+---
+
+```{r}
+library(readxl)
+library(ggplot2)
+caracois<-read_excel("~/Desktop/FCUL/3º ANO/Ecologia Numérica/Trabalho Prático/caracois.xlsx")
+```
+
+```{r}
+boxplot(caracois$`comprimento_concha_cm`~caracois$habitat, main="Variação comprimento concha Cornu aspersum com Habitat", xlab = "Habitat", ylab = "Comprimento concha (cm)")
+```
+
+```{r}
+ggplot(caracois, aes(x = `temperatura_celsius`, y =  `comprimento_concha_cm`)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm",se=FALSE,colour = "red")+
+  scale_x_continuous(breaks = seq(from = 11.5, to = 20.5, by = 0.5)) +
+  scale_y_continuous(breaks = seq(from = 1.5, to = 3.5, by = 0.5)) +
+  labs(title="Variação entre comprimento concha Cornu aspersum com a temperatura",x="Temperatura (ºC)", y="Comprimento concha (cm)")+
+  theme_bw()
+```
+
+```{r}
+boxplot(caracois$`comprimento_concha_cm`~caracois$`exposiçao_solar`, main="Variação comprimento concha Cornu aspersum com Exposição Solar", xlab = "Exposição Solar", ylab = "Comprimento concha (cm)")
+```
